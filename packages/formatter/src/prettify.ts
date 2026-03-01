@@ -1,12 +1,14 @@
-import parserTypescript from "prettier/parser-typescript";
 import { format } from "prettier/standalone";
+import * as parserEstree from "prettier/plugins/estree";
+import * as parserTypescript from "prettier/plugins/typescript";
 
-export function prettify(text: string) {
+export async function formatWithPrettier(text: string) {
   return format(text, {
-    plugins: [parserTypescript],
+    plugins: [parserTypescript, parserEstree],
     parser: "typescript",
     printWidth: 60,
-    singleAttributePerLine: false,
     arrowParens: "avoid",
+    semi: false,
+    singleQuote: false,
   });
 }

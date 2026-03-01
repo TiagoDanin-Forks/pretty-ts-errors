@@ -1,5 +1,6 @@
 const process = require("node:process");
 const console = require("node:console");
+const path = require("node:path");
 const production = process.argv.includes("--production");
 const watch = process.argv.includes("--watch");
 
@@ -59,7 +60,6 @@ const esbuildProblemMatcherPlugin = {
 const workspacePackagesPlugin = {
   name: "workspace-packages",
   setup(build) {
-    const path = require("node:path");
     const pkgRoot = path.resolve(__dirname, "../../../packages");
     /** @type {Record<string, string>} */
     const alias = {
